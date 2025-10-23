@@ -8,7 +8,7 @@ export default function page() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black mt-20 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
+    <div className="min-h-screen bg-gradient-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -30,7 +30,7 @@ export default function page() {
         transition={{ duration: 0.8 }}
         className="text-7xl md:text-8xl font-extrabold text-center tracking-tight mb-16"
       >
-        <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2]">CONTACT ME</span>
+        <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">CONTACT ME</span>
       </motion.h1>
 
       {/* Contact Info */}

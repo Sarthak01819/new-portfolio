@@ -33,7 +33,7 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black mt-20 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
+    <div className="min-h-screen bg-gradient-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0 }}
