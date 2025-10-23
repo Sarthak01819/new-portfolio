@@ -1,10 +1,12 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   const navLinks = [
     { name: 'Projects', href: '/projects' },
     { name: 'Services', href: '/services' },
@@ -38,7 +40,7 @@ const Navbar = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed w-full top-6 left-0 z-50 px-6"
     >
-      <div className="mx-auto w-[90%] md:w-[80%] bg-white/10 backdrop-blur-md rounded-full flex items-center justify-between px-6 py-4 shadow-lg shadow-black/30 border border-white/20 transition-all">
+      <div className="mx-auto w-[90%] md:w-[80%] bg-white/10 backdrop-blur-md rounded-full flex items-center justify-between px-6 py-4 shadow-lg shadow-black/30 border border-white/20 transition-all relative">
         
         {/* Logo */}
         <motion.div
@@ -51,7 +53,7 @@ const Navbar = () => {
           </Link>
         </motion.div>
 
-        {/* Navigation Links */}
+        {/* Desktop Navigation */}
         <motion.ul
           variants={container}
           initial="hidden"
@@ -71,15 +73,40 @@ const Navbar = () => {
           ))}
         </motion.ul>
 
-        {/* Mobile Menu Placeholder */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="md:hidden"
-        >
-          <button className="text-white text-2xl">☰</button>
-        </motion.div>
+        {/* Mobile Hamburger */}
+        <div className="md:hidden relative">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-white text-2xl z-50"
+          >
+            {menuOpen ? '✕' : '☰'}
+          </button>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.ul
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="absolute top-16 right-0 w-40 bg-white/10 backdrop-blur-md rounded-lg shadow-lg flex flex-col gap-4 p-4 text-center"
+              >
+                {navLinks.map((link, i) => (
+                  <motion.li
+                    key={i}
+                    whileHover={{ scale: 1.05, color: '#ffffffaa' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-white font-[font2] uppercase cursor-pointer"
+                    onClick={() => setMenuOpen(false)} // Close menu on click
+                  >
+                    <Link href={link.href}>{link.name}</Link>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.nav>
   )

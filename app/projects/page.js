@@ -52,7 +52,7 @@ const ProjectsPage = () => {
       {/* Projects Grid */}
       <div className="lol grid grid-cols-1 md:grid-cols-1 gap-16 w-full">
         {projects.map((proj, i) => (
-          <div key={i} className="hero flex flex-col md:flex-row gap-8 mb-16 p-4 md:p-0 transition-transform hover:scale-105 duration-300">
+          <div key={i} className="hero flex flex-row gap-8 mb-16 p-4 md:p-0 transition-transform hover:scale-105 duration-300">
             <ProjectCard
               image1={proj.img1}
               link1={proj.l1}

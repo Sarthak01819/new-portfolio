@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, GithubIcon, InstagramIcon, LinkedinIcon } from 'lucide-react'
+import { ArrowDownIcon, ArrowRight, GithubIcon, InstagramIcon, LinkedinIcon } from 'lucide-react'
 import Link from 'next/link'
 
 const Hero = () => {
@@ -67,8 +67,8 @@ const Hero = () => {
         </div>
 
         {/* Right Section */}
-        <div className="w-full md:w-1/2 flex flex-col items-center md:items-end gap-5 px-4 md:pr-40 mt-10 md:mt-0">
-          <div className="flex flex-col items-center md:items-end gap-2">
+        <div className="w-full md:w-1/2 flex flex-col items-center lg:items-end gap-5 px-4 lg:pr-40 mt-10 lg:mt-0">
+          <div className="flex flex-col items-center lg:items-end gap-2">
             <span className="font-[font2] uppercase text-4xl">Open to work</span>
             <span className="font-thin text-gray-300">&nbsp;Based in India</span>
           </div>
