@@ -33,7 +33,7 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
+    <div className="min-h-screen bg-linear-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -55,7 +55,7 @@ export default function ServicesPage() {
         transition={{ duration: 0.8 }}
         className="text-7xl md:text-8xl font-extrabold text-center tracking-tight mb-16"
       >
-        <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2]">SERVICES</span>
+        <span className="bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2]">SERVICES</span>
       </motion.h1>
 
       {/* Intro */}
@@ -82,7 +82,7 @@ export default function ServicesPage() {
             key={i}
             whileHover={{ scale: 1.05, rotateY: 5 }}
             transition={{ type: 'spring', stiffness: 300 }}
-            className="group bg-gradient-to-b from-gray-800/70 to-gray-900/70 p-8 rounded-2xl border border-gray-700 hover:border-white/40 shadow-md hover:shadow-white/20 backdrop-blur-md text-center"
+            className="group bg-linear-to-b from-gray-800/70 to-gray-900/70 p-8 rounded-2xl border border-gray-700 hover:border-white/40 shadow-md hover:shadow-white/20 backdrop-blur-md text-center"
           >
             <div className="mb-5 flex justify-center text-gray-400 group-hover:text-white transition-all duration-300">
               {service.icon}
@@ -101,7 +101,7 @@ export default function ServicesPage() {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto text-center"
       >
-        <h2 className="text-4xl font-semibold mb-10 pb-2 bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">Technologies I Use</h2>
+        <h2 className="text-4xl font-semibold mb-10 pb-2 bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent">Technologies I Use</h2>
         <p className="text-gray-300 text-lg leading-relaxed mb-6">
           I combine modern technologies and frameworks to deliver high-performance, maintainable, and scalable web solutions.
         </p>
@@ -124,7 +124,7 @@ export default function ServicesPage() {
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
         viewport={{ once: true }}
-        className="h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl mt-20"
+        className="h-0.5 bg-linear-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl mt-20"
       />
     </div>
   )

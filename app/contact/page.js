@@ -8,7 +8,7 @@ export default function page() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
+    <div className="min-h-screen bg-linear-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -30,7 +30,7 @@ export default function page() {
         transition={{ duration: 0.8 }}
         className="text-7xl md:text-8xl font-extrabold text-center tracking-tight mb-16"
       >
-        <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">CONTACT ME</span>
+        <span className="bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">CONTACT ME</span>
       </motion.h1>
 
       {/* Contact Info */}
@@ -74,7 +74,7 @@ export default function page() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-b from-gray-800/70 to-gray-900/70 p-10 rounded-2xl border border-gray-700 shadow-md hover:shadow-white/20 backdrop-blur-md space-y-6"
+          className="bg-linear-to-b from-gray-800/70 to-gray-900/70 p-10 rounded-2xl border border-gray-700 shadow-md hover:shadow-white/20 backdrop-blur-md space-y-6"
         >
           <div className="grid grid-cols-2 gap-4">
             <input
@@ -118,7 +118,7 @@ export default function page() {
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
         viewport={{ once: true }}
-        className="h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl mt-20"
+        className="h-0.5 bg-linear-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl mt-20"
       />
     </div>
   )

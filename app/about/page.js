@@ -6,7 +6,7 @@ import { Code2, Database, Server, Rocket } from 'lucide-react'
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b pt-40 from-black via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
+    <div className="min-h-screen bg-linear-to-b pt-40 from-black via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -28,7 +28,7 @@ export default function AboutPage() {
         transition={{ duration: 0.8 }}
         className="text-7xl md:text-8xl font-extrabold text-center tracking-tight mb-16"
       >
-        <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">ABOUT ME</span>
+        <span className="bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">ABOUT ME</span>
       </motion.h1>
 
       {/* Intro Section */}
@@ -42,7 +42,7 @@ export default function AboutPage() {
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
           <strong>Building reliable, scalable web solutions with modern JavaScript frameworks.</strong>
           <br /><br />
-          Hi, I'm <span className="text-white font-semibold">Sarthak Singh</span>, a <strong>Full Stack Developer</strong> passionate about crafting <strong>efficient</strong>, <strong>scalable</strong>, and <strong>maintainable</strong> web applications using modern technologies.
+          Hi, I'm <span className="text-white font-semibold">Sarthak Singh</span>, a <strong>Full Stack Developer</strong>, crafting <strong>efficient</strong>, <strong>scalable</strong>, and <strong>maintainable</strong> web applications using modern technologies.
         </p>
         <div className="text-left mt-10 bg-gray-900/60 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg backdrop-blur-md inline-block">
           <p><strong>Front-end:</strong> React.js, Next.js, Tailwind CSS</p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
             key={i}
             whileHover={{ scale: 1.05, rotateY: 5 }}
             transition={{ type: 'spring', stiffness: 300 }}
-            className="group bg-gradient-to-b from-gray-800/70 to-gray-900/70 p-8 rounded-2xl border border-gray-700 hover:border-white/40 shadow-md hover:shadow-white/20 backdrop-blur-md"
+            className="group bg-linear-to-b from-gray-800/70 to-gray-900/70 p-8 rounded-2xl border border-gray-700 hover:border-white/40 shadow-md hover:shadow-white/20 backdrop-blur-md"
           >
             <div className="mb-5 text-gray-400 group-hover:text-white transition-all duration-300">
               {item.icon}
@@ -89,7 +89,7 @@ export default function AboutPage() {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto mb-20 text-center"
       >
-        <h2 className="text-4xl font-semibold mb-8 bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">My Approach</h2>
+        <h2 className="text-4xl font-semibold mb-8 bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent">My Approach</h2>
         <p className="text-gray-300 leading-relaxed text-lg mb-6">
           I focus on <strong>clean architecture</strong>, <strong>modular design</strong>, and <strong>performance optimization</strong>. I enjoy creating reusable components, streamlining workflows, and building products that feel intuitive and polished.
         </p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
         viewport={{ once: true }}
-        className="h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl"
+        className="h-0.5 bg-linear-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl"
       />
     </div>
   )

@@ -43,7 +43,7 @@ useGSAP(() => {
   ]
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-b pt-40 from-black via-gray-900 to-black text-white font-sans overflow-hidden px-4 sm:px-6 md:px-10 lg:px-20 py-16 sm:py-20 will-change-transform">
+    <div className="min-h-screen relative bg-linear-to-b pt-40 from-black via-gray-900 to-black text-white font-sans overflow-hidden px-4 sm:px-6 md:px-10 lg:px-20 py-16 sm:py-20 will-change-transform">
       
       {/* Floating Background Effects */}
       <div className="absolute -top-20 -left-20 w-64 sm:w-96 h-64 sm:h-96 bg-white/10 blur-3xl rounded-full animate-pulse"></div>
@@ -51,7 +51,7 @@ useGSAP(() => {
 
       {/* Page Title */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center mb-12 sm:mb-20">
-        <span className="text-[14vw] sm:text-[10vw] md:text-[8vw] font-[font2] bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent leading-none uppercase">
+        <span className="text-[14vw] sm:text-[10vw] md:text-[8vw] font-[font2] bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent leading-none uppercase">
           Projects
         </span>
         <span className="text-[8vw] sm:text-[5vw] md:text-[4vw] font-[font3] text-gray-400 pt-2 md:pt-6">
