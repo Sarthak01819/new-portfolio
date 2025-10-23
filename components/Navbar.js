@@ -40,7 +40,7 @@ const Navbar = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed w-full top-6 left-0 z-50 px-6"
     >
-      <div className="mx-auto w-[90%] md:w-[80%] bg-white/10 backdrop-blur-md rounded-full flex items-center justify-between px-10 py-4 shadow-lg shadow-black/30 border border-white/20 transition-all relative">
+      <div className="mx-auto w-[90%] md:w-[80%] bg-white/10 backdrop-blur-md rounded-full flex items-center justify-between px-6 md:px-10 py-4 shadow-lg shadow-black/30 border border-white/20 transition-all relative">
         
         {/* Logo */}
         <motion.div
