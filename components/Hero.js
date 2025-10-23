@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const Hero = () => {
   return (
-    <div className="min-h-screen relative flex flex-col items-center justify-center px-6 mt-30 py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white overflow-hidden font-sans">
+    <div className="min-h-screen relative flex flex-col items-center justify-center px-6 mt-30 py-20 bg-linear-to-b from-black via-gray-900 to-black text-white overflow-hidden font-sans">
       
       {/* Floating Background Effects */}
       <motion.div

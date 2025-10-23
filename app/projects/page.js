@@ -50,7 +50,7 @@ useGSAP(() => {
       <div className="absolute -bottom-20 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-white/10 blur-3xl rounded-full animate-pulse"></div>
 
       {/* Page Title */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center mb-12 sm:mb-20">
+      <div className="flex flex-col md:flex-row mt-20 items-center justify-center gap-4 md:gap-8 text-center mb-12 sm:mb-20">
         <span className="text-[14vw] sm:text-[10vw] md:text-[8vw] font-[font2] bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent leading-none uppercase">
           Projects
         </span>
