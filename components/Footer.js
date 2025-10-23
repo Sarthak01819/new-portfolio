@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const Footer = () => {
   return (
-    <footer className="relative w-full bg-gradient-to-t from-black via-gray-900 to-black text-white py-12 px-6 overflow-hidden">
+    <footer className="relative w-full bg-linear-to-t from-black via-gray-900 to-black text-white py-12 px-6 overflow-hidden">
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
@@ -25,17 +25,17 @@ const Footer = () => {
       {/* Social Links */}
       <div className="flex justify-center gap-6 mb-6">
         <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href={'https://github.com/Sarthak01819'} target="_blank">
+          <Link href='https://github.com/Sarthak01819' target="_blank">
             <GithubIcon className='hover:scale-110 transition-all cursor-pointer' />
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href={'www.linkedin.com/in/sarthak-singh-866455253'} target="_blank">
+          <Link href='https://www.linkedin.com/in/sarthak-singh-866455253' target="_blank">
             <LinkedinIcon className='hover:scale-110 transition-all cursor-pointer' />
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href={'https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg=='} target="_blank">
+          <Link href='https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg==' target="_blank">
             <InstagramIcon className='hover:scale-110 transition-all cursor-pointer' />
           </Link>
         </motion.div>
@@ -47,7 +47,7 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <div className="h-[1px] bg-white/20 w-full mb-6"></div>
+      <div className="h-px bg-white/20 w-full mb-6"></div>
 
       {/* Copyright */}
       <div className="text-center text-gray-400 text-sm">

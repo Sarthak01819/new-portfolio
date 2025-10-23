@@ -30,10 +30,10 @@ const Hero = () => {
         transition={{ duration: 0.8 }}
         className="text-center flex flex-col gap-6 font-[font2]"
       >
-        <span className="text-[11vw] leading-[10vw] uppercase bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+        <span className="text-[11vw] leading-[10vw] uppercase bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent">
           Full Stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
-        <span className="text-[11vw] leading-[10vw] uppercase bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+        <span className="text-[11vw] leading-[10vw] uppercase bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Developer
         </span>
       </motion.h1>
@@ -73,13 +73,13 @@ const Hero = () => {
             <span className="font-thin text-gray-300">&nbsp;Based in India</span>
           </div>
           <div className="flex gap-4">
-            <Link href={'https://github.com/Sarthak01819'} target='_blank'>
+            <Link href='https://github.com/Sarthak01819' target='_blank'>
               <GithubIcon className='hover:scale-110 transition-all cursor-pointer' />
             </Link>
-            <Link href={'www.linkedin.com/in/sarthak-singh-866455253'} target='_blank'>
+            <Link href='https://www.linkedin.com/in/sarthak-singh-866455253' target='_blank'>
               <LinkedinIcon className='hover:scale-110 transition-all cursor-pointer' />
             </Link>
-            <Link href={'https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg=='} target='_blank'>
+            <Link href='https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg==' target='_blank'>
               <InstagramIcon className='hover:scale-110 transition-all cursor-pointer' />
             </Link>
           </div>
