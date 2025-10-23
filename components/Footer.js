@@ -24,34 +24,55 @@ const Footer = () => {
 
       {/* Social Links */}
       <div className="flex justify-center gap-6 mb-6">
-        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href='https://github.com/Sarthak01819' target="_blank">
-            <GithubIcon className='hover:scale-110 transition-all cursor-pointer' />
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href='https://www.linkedin.com/in/sarthak-singh-866455253' target="_blank">
-            <LinkedinIcon className='hover:scale-110 transition-all cursor-pointer' />
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href='https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg==' target="_blank">
-            <InstagramIcon className='hover:scale-110 transition-all cursor-pointer' />
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-          <Link href="mailto:sarthaksingh.9344@gmail.com">
-            <Mail className='hover:scale-110 transition-all cursor-pointer' />
-          </Link>
-        </motion.div>
+        <motion.a 
+          whileHover={{ scale: 1.2 }} 
+          whileTap={{ scale: 0.95 }} 
+          href='https://github.com/Sarthak01819' 
+          target="_blank" 
+          className="cursor-pointer"
+        >
+          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/github.png" alt="GitHub" />
+        </motion.a>
+
+        <motion.a 
+          whileHover={{ scale: 1.2 }} 
+          whileTap={{ scale: 0.95 }} 
+          href='https://www.linkedin.com/in/sarthak-singh-866455253' 
+          target="_blank" 
+          className="cursor-pointer"
+        >
+          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/linkedin.png" alt="LinkedIn" />
+        </motion.a>
+
+        <motion.a 
+          whileHover={{ scale: 1.2 }} 
+          whileTap={{ scale: 0.95 }} 
+          href='https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg==' 
+          target="_blank" 
+          className="cursor-pointer"
+        >
+          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/instagram-logo.png" alt="Instagram" />
+        </motion.a>
+
+        <motion.a 
+          whileHover={{ scale: 1.2 }} 
+          whileTap={{ scale: 0.95 }} 
+          href="mailto:sarthaksingh.9344@gmail.com" 
+          className="cursor-pointer"
+        >
+          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/mail.png" alt="Instagram" />
+        </motion.a>
       </div>
 
       {/* Divider */}
       <div className="h-px bg-white/20 w-full mb-6"></div>
 
       {/* Copyright */}
-      <div className="text-center text-gray-400 text-sm">
-        &copy; {new Date().getFullYear()}. All rights reserved.
+      <div className="text-center flex flex-col text-gray-400 text-sm">
+        <span>&copy; {new Date().getFullYear()}. All rights reserved.</span>
+        <span>
+          Created and Designed by <Link href={'/'} className='underline cursor-pointer'>Sarthak Singh</Link>.
+        </span>
       </div>
     </footer>
   )

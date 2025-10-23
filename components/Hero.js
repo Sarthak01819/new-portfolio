@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowDownIcon, ArrowRight, GithubIcon, InstagramIcon, LinkedinIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const Hero = () => {
@@ -55,7 +55,8 @@ const Hero = () => {
               Sarthak Singh
             </span>
           </div>
-          <Link href={'/contact'}>
+
+          <Link href="/contact" passHref>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -72,25 +73,19 @@ const Hero = () => {
             <span className="font-[font2] uppercase text-4xl">Open to work</span>
             <span className="font-thin text-gray-300">&nbsp;Based in India</span>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-3 items-center justify-center">
             <Link href='https://github.com/Sarthak01819' target='_blank'>
-              <GithubIcon className='hover:scale-110 transition-all cursor-pointer' />
+              <img className='hover:scale-110 transition-all cursor-pointer h-7 relative z-10' src="/github.png" alt="GitHub" />
             </Link>
             <Link href='https://www.linkedin.com/in/sarthak-singh-866455253' target='_blank'>
-              <LinkedinIcon className='hover:scale-110 transition-all cursor-pointer' />
+              <img className='hover:scale-110 transition-all cursor-pointer h-7 relative z-10' src="/linkedin.png" alt="LinkedIn" />
             </Link>
             <Link href='https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg==' target='_blank'>
-              <InstagramIcon className='hover:scale-110 transition-all cursor-pointer' />
+              <img className='hover:scale-110 transition-all cursor-pointer h-7 relative z-10' src="/instagram-logo.png" alt="Instagram" />
             </Link>
           </div>
         </div>
       </motion.div>
-
-      {/* Optional Scroll Down Indicator */}
-      {/* <div className="absolute bottom-10 flex flex-col items-center gap-2">
-        <span className="font-thin text-gray-300">Scroll Down</span>
-        <ArrowDownIcon className="animate-bounce" />
-      </div> */}
     </div>
   )
 }
