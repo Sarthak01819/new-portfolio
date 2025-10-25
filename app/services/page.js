@@ -55,7 +55,7 @@ export default function ServicesPage() {
         transition={{ duration: 0.8 }}
         className="text-7xl md:text-8xl font-extrabold text-center tracking-tight mb-16"
       >
-        <span className="bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2]">SERVICES</span>
+        <span className="bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">SERVICES</span>
       </motion.h1>
 
       {/* Intro */}

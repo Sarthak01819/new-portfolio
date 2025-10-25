@@ -8,6 +8,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
@@ -90,7 +91,7 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-16 right-0 w-40 bg-white/10 backdrop-blur-md rounded-lg shadow-lg flex flex-col gap-4 p-4 text-center"
+                className="absolute top-16 right-0 w-40 bg-gray-950 border-white/20 border backdrop-blur-md rounded-lg shadow-black/30 flex flex-col gap-4 p-4 text-center"
               >
                 {navLinks.map((link, i) => (
                   <motion.li
