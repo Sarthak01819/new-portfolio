@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-center px-6 mt-30 py-20 bg-linear-to-b from-black via-gray-900 to-black text-white overflow-hidden font-sans">
-      
+
       {/* Floating Background Effects */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -53,10 +53,10 @@ const Hero = () => {
           {/* Left Section */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-7 px-4 md:px-40">
             <div className="flex flex-col items-center md:items-start gap-2">
-              <span className="uppercase text-[7vh] leading-[8vh] font-[font3]">
+              <span className="uppercase text-[3.8vh] leading-[4.3vh] lg:text-[7vh] lg:leading-[8vh] font-[font3]">
                 Hey, I'm
               </span>
-              <span className="uppercase text-[7vh] leading-[8vh] font-[font3]">
+              <span className="uppercase text-[3.8vh] leading-[4.3vh] lg:text-[7vh] lg:leading-[8vh] font-[font3]">
                 Sarthak Singh
               </span>
             </div>
@@ -79,7 +79,7 @@ const Hero = () => {
               <span className="font-thin text-gray-300">&nbsp;Based in India</span>
             </div>
 
-            <div className="flex gap-3 items-center justify-center">
+            {/* <div className="flex gap-3 items-center justify-center">
               <Link href='https://github.com/Sarthak01819' target='_blank'>
                 <img
                   className='hover:scale-110 transition-all cursor-pointer h-7 relative z-10'
@@ -101,7 +101,7 @@ const Hero = () => {
                   alt="Instagram"
                 />
               </Link>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       </div>
