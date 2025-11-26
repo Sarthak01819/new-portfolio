@@ -40,6 +40,7 @@ useGSAP(() => {
     { img1: "/PassOP-MongoDB.png", l1: "https://pass-op-mongo-taupe.vercel.app/", img2: "/SigmaAI.png", l2: "https://sigma-ai-tan.vercel.app/" },
     { img1: "/Spotify-clone.png", l1: "https://spotify-clone-liart-rho.vercel.app/", img2: "/SrtLinks.png", l2: "https://srt-links-d6.vercel.app/" },
     { img1: "/Todo-list.png", l1: "https://todo-list-app-kappa-seven.vercel.app/", img2: "/demo-portfolio.png", l2: "https://portfolio-temp-nine-eta.vercel.app/" },
+    { img1: "/emp-mgmt-stm.png", l1: "https://employee-management-system-lemon-five.vercel.app/", img2: "", l2: "" },
   ]
 
   return (
