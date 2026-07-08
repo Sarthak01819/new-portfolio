@@ -1,10 +1,11 @@
 import Hero from "@/components/Hero";
-import Image from "next/image";
+import SelectedWork from "@/components/SelectedWork";
 
 export default function Home() {
   return (
     <>
-    <Hero />
+      <Hero />
+      <SelectedWork />
     </>
   );
 }

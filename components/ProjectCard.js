@@ -1,47 +1,58 @@
-import Link from 'next/link'
-import React from 'react'
+"use client";
 
-const ProjectCard = (props) => {
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-    return (
-        <>
-            {props?.image2 ? (
-                // Normal two-project layout
-                <div className="flex justify-center items-center gap-5">
-                    <div className="relative group w-1/2 h-full hover:rounded-[3rem] transition-all overflow-hidden">
-                        <img className="h-full w-full object-cover group-hover:scale-120 scale-115 transition-all group" src={props?.image1} alt="" />
-                        <div className="absolute group-hover:opacity-100 opacity-0 transition-all top-0 flex items-center justify-center h-full w-full left-0 hover:bg-black/10">
-                            <h2 className="text-white border-4 border-white rounded-full text-[50px] px-4 py-2 uppercase">
-                                <Link href={props?.link1} target="_blank">View Project</Link>
-                            </h2>
-                        </div>
-                    </div>
-
-                    <div className="relative group w-1/2 h-full hover:rounded-[3rem] transition-all overflow-hidden">
-                        <img className="h-full w-full object-cover group-hover:scale-120 scale-115 transition-all group" src={props?.image2} alt="" />
-                        <div className="absolute group-hover:opacity-100 opacity-0 transition-all top-0 flex items-center justify-center h-full w-full left-0 hover:bg-black/10">
-                            <h2 className="text-white border-4 border-white rounded-full text-[50px] px-4 py-2 uppercase">
-                                <Link href={props?.link2} target="_blank">View Project</Link>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                // Centered single project layout
-                <div className="flex justify-center items-center">
-                    <div className="relative group w-1/2 h-full hover:rounded-[3rem] transition-all overflow-hidden">
-                        <img className="h-full w-full object-cover group-hover:scale-105 transition-all group" src={props?.image1} alt="" />
-                        <div className="absolute group-hover:opacity-100 opacity-0 transition-all top-0 flex items-center justify-center h-full w-full left-0 hover:bg-black/10">
-                            <h2 className="text-white border-4 border-white rounded-full text-[50px] px-4 py-2 uppercase">
-                                <Link href={props?.link1} target="_blank">View Project</Link>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </>
-    )
-
+export default function ProjectCard({ project, index = 0 }) {
+  return (
+    <motion.article
+      initial={false}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration: 0.75, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      className="project-card group h-full"
+    >
+      <Link
+        href={project.href}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open ${project.title}`}
+        className="flex h-full flex-col"
+      >
+        <div className="project-media relative">
+          <Image
+            src={project.image}
+            alt={`${project.title} project screenshot`}
+            width={1400}
+            height={875}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="flex flex-1 flex-col justify-between gap-8 p-5 sm:p-6">
+          <div>
+            <div className="mb-4 flex items-center justify-between gap-4 text-xs uppercase muted-copy">
+              <span>{project.category}</span>
+              <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
+            </div>
+            <h2 className="font-display text-2xl uppercase sm:text-3xl">{project.title}</h2>
+            <p className="mt-4 text-sm leading-6 muted-copy">{project.summary}</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border px-3 py-1 text-xs uppercase muted-copy"
+                style={{ borderColor: "var(--line)" }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Link>
+    </motion.article>
+  );
 }
-
-export default ProjectCard

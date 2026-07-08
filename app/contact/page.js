@@ -1,125 +1,76 @@
-"use client"
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import PageShell from "@/components/PageShell";
+import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin } from 'lucide-react'
+const contactItems = [
+  { icon: Mail, label: "Email", value: "sarthaksingh.9344@gmail.com", href: "mailto:sarthaksingh.9344@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+91-8429172126", href: "tel:+918429172126" },
+  { icon: MapPin, label: "Location", value: "Kanpur, Uttar Pradesh, India" },
+];
 
-export default function page() {
-
-
+export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-black pt-40 via-gray-900 to-black text-white font-sans overflow-hidden px-6 py-20 relative">
-      {/* Floating Background Effects */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15, scale: [1, 1.3, 1] }}
-        transition={{ repeat: Infinity, duration: 12, ease: 'easeInOut' }}
-        className="absolute -top-20 -left-20 w-96 h-96 bg-white/10 blur-3xl rounded-full"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15, scale: [1.2, 1, 1.2] }}
-        transition={{ repeat: Infinity, duration: 14, ease: 'easeInOut' }}
-        className="absolute -bottom-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full"
-      />
+    <PageShell className="pb-24 sm:pb-32">
+      <section className="section-band">
+        <SectionHeader eyebrow="Contact" title="Let us build">
+          Send a brief, a role, or a project idea. I will get back with the clearest next step.
+        </SectionHeader>
 
-      {/* Header */}
-      <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-7xl md:text-8xl font-extrabold text-center tracking-tight mb-16"
-      >
-        <span className="bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent font-[font2] pt-2">CONTACT ME</span>
-      </motion.h1>
+        <div className="section-inner grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <Reveal className="grid gap-4">
+            {contactItems.map((item) => {
+              const Icon = item.icon;
+              const content = (
+                <div className="contact-card flex items-start gap-4 p-5">
+                  <span
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full border"
+                    style={{ borderColor: "var(--line)", background: "var(--surface-strong)" }}
+                  >
+                    <Icon size={19} aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block font-display text-sm uppercase">{item.label}</span>
+                    <span className="mt-1 block break-words text-sm muted-copy">{item.value}</span>
+                  </span>
+                </div>
+              );
 
-      {/* Contact Info */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* Left Section - Info */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="space-y-6 text-gray-300"
-        >
-          <div className="flex items-center gap-4">
-            <Mail className="text-white" size={24} />
-            <div>
-              <p className="font-semibold text-white text-lg">Email</p>
-              <p className="text-gray-400">sarthaksingh.9344@gmail.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <Phone className="text-white" size={24} />
-            <div>
-              <p className="font-semibold text-white text-lg">Phone</p>
-              <p className="text-gray-400">+91-8429172126</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <MapPin className="text-white" size={24} />
-            <div>
-              <p className="font-semibold text-white text-lg">Address</p>
-              <p className="text-gray-400">821/1, Sanjeev Nagar, GT Road, Kanpur, Uttar Pradesh</p>
-            </div>
-          </div>
-        </motion.div>
+              return item.href ? (
+                <a key={item.label} href={item.href}>
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label}>{content}</div>
+              );
+            })}
+          </Reveal>
 
-        {/* Right Section - Form */}
-        <motion.form
-          action={'https://formspree.io/f/mjkaqnyb'}
-          method='POST'
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="bg-linear-to-b from-gray-800/70 to-gray-900/70 p-10 rounded-2xl border border-gray-700 shadow-md hover:shadow-white/20 backdrop-blur-md space-y-6"
-        >
-          <div className="grid grid-cols-2 gap-4">
-            <input
-              type="text"
-              name='first'
-              placeholder="First Name"
-              className="bg-transparent border-b border-gray-600 focus:border-white outline-none py-2 text-white placeholder-gray-400"
-            />
-            <input
-              type="text"
-              name='last'
-              placeholder="Last Name"
-              className="bg-transparent border-b border-gray-600 focus:border-white outline-none py-2 text-white placeholder-gray-400"
-            />
-          </div>
-          <input
-            type="email"
-            name='email'
-            placeholder="Email (required)"
-            className="bg-transparent border-b border-gray-600 focus:border-white outline-none py-2 text-white placeholder-gray-400 w-full"
-          />
-          <textarea
-            rows="5"
-            name='message'
-            placeholder="Message..."
-            className="bg-transparent border-b border-gray-600 focus:border-white outline-none py-2 text-white placeholder-gray-400 w-full resize-none"
-          ></textarea>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full mt-4 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all"
-          >
-            Send Message
-          </motion.button>
-        </motion.form>
-      </div>
+          <Reveal delay={0.08}>
+            <form action="https://formspree.io/f/mjkaqnyb" method="POST" className="contact-card grid gap-4 p-5 sm:p-8" aria-labelledby="contact-heading">
+              <h2 id="contact-heading" className="sr-only">Contact form</h2>
+              <input type="text" name="_gotcha" tabIndex="-1" autoComplete="off" style={{ display: "none" }} />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="sr-only" htmlFor="first">First name</label>
+                <input id="first" className="field-control" type="text" name="first" placeholder="First name" autoComplete="given-name" />
 
-      {/* Divider */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-        viewport={{ once: true }}
-        className="h-0.5 bg-linear-to-r from-transparent via-white/60 to-transparent w-full mx-auto max-w-6xl mt-20"
-      />
-    </div>
-  )
+                <label className="sr-only" htmlFor="last">Last name</label>
+                <input id="last" className="field-control" type="text" name="last" placeholder="Last name" autoComplete="family-name" />
+              </div>
+
+              <label className="sr-only" htmlFor="email">Email</label>
+              <input id="email" className="field-control" type="email" name="email" placeholder="Email" autoComplete="email" required aria-required="true" />
+
+              <label className="sr-only" htmlFor="message">Message</label>
+              <textarea id="message" className="field-control min-h-40 resize-none" name="message" placeholder="Message" required aria-required="true" />
+
+              <button type="submit" className="primary-action mt-2 w-full">
+                Send message <ArrowRight size={18} aria-hidden="true" />
+              </button>
+            </form>
+          </Reveal>
+        </div>
+      </section>
+    </PageShell>
+  );
 }

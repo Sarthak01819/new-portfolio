@@ -1,116 +1,95 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useTheme } from "@/components/ThemeProvider";
+import ThemeToggle from "@/components/ThemeToggle";
+import { navLinks } from "@/lib/data";
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Services', href: '/services' },
-    { name: 'About', href: '/about' },
-    { name: 'Hire Me', href: '/contact' },
-  ]
-
-  const container = {
-    hidden: { opacity: 0, y: -50 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        staggerChildren: 0.15,
-        duration: 0.8,
-        type: 'spring',
-        stiffness: 120,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: -20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const { theme } = useTheme();
+  const logoSrc = theme === "light" ? "/ss-logo.png" : "/ss-logo2.png";
 
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="fixed w-full top-6 left-0 z-50 px-6"
-    >
-      <div className="mx-auto w-[90%] md:w-[80%] bg-white/10 backdrop-blur-md rounded-full flex items-center justify-between px-6 md:px-10 py-4 shadow-lg shadow-black/30 border border-white/20 transition-all relative">
-        
-        {/* Logo */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.6, type: 'spring', stiffness: 120 }}
-        >
-          <Link href={'/'}>
-            <img src="/ss-logo2.png" alt="Sarthak Singh Logo" className="h-12 md:h-16" />
-          </Link>
-        </motion.div>
-
-        {/* Desktop Navigation */}
-        <motion.ul
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="hidden md:flex gap-8 text-white font-[font2] uppercase tracking-wide"
-        >
-          {navLinks.map((link, i) => (
-            <motion.li
-              key={i}
-              variants={item}
-              whileHover={{ scale: 1.1, color: '#ffffffaa' }}
-              whileTap={{ scale: 0.95 }}
-              className="cursor-pointer"
-            >
-              <Link href={link.href}>{link.name}</Link>
-            </motion.li>
-          ))}
-        </motion.ul>
-
-        {/* Mobile Hamburger */}
-        <div className="md:hidden relative">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-white text-2xl z-50"
+    <nav className="fixed left-0 top-5 z-50 w-full px-4 sm:px-6">
+      <div className="nav-shell mx-auto flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-3 backdrop-blur-2xl sm:px-5">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
+          <span
+            className="grid h-11 w-11 place-items-center overflow-hidden rounded-full border"
+            style={{ borderColor: "var(--line)", background: "var(--surface-strong)" }}
           >
-            {menuOpen ? '✕' : '☰'}
-          </button>
+              <Image src={logoSrc} alt="Sarthak Singh logo" width={44} height={44} priority className="h-full w-full object-cover" />
+          </span>
+          <span className="hidden font-display text-sm uppercase sm:block">Sarthak Singh</span>
+        </Link>
 
-          {/* Mobile Menu */}
-          <AnimatePresence>
-            {menuOpen && (
-              <motion.ul
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="absolute top-16 right-0 w-40 bg-gray-950 border-white/20 border backdrop-blur-md rounded-lg shadow-black/30 flex flex-col gap-4 p-4 text-center"
+        <div className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full px-4 py-2 text-xs font-semibold uppercase transition-colors"
+                style={{
+                  background: isActive ? "var(--text)" : "transparent",
+                  color: isActive ? "var(--bg)" : "var(--muted)",
+                }}
               >
-                {navLinks.map((link, i) => (
-                  <motion.li
-                    key={i}
-                    whileHover={{ scale: 1.05, color: '#ffffffaa' }}
-                    whileTap={{ scale: 0.95 }}
-                    className="text-white font-[font2] uppercase cursor-pointer"
-                    onClick={() => setMenuOpen(false)} // Close menu on click
-                  >
-                    <Link href={link.href}>{link.name}</Link>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            )}
-          </AnimatePresence>
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
-      </div>
-    </motion.nav>
-  )
-}
 
-export default Navbar
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            onClick={() => setMenuOpen((open) => !open)}
+            className="grid h-10 w-10 place-items-center rounded-full border md:hidden"
+            style={{ borderColor: "var(--line)", background: "var(--surface)" }}
+          >
+            {menuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.22 }}
+              className="absolute left-4 right-4 top-[4.8rem] overflow-hidden rounded-[8px] border p-2 shadow-2xl md:hidden"
+              style={{ borderColor: "var(--line)", background: "var(--nav)" }}
+            >
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block rounded-[6px] px-4 py-3 font-display text-sm uppercase transition-colors"
+                  style={{
+                    background: pathname === link.href ? "var(--text)" : "transparent",
+                    color: pathname === link.href ? "var(--bg)" : "var(--text)",
+                  }}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </nav>
+  );
+}

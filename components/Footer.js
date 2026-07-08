@@ -1,81 +1,56 @@
-"use client"
+import Link from "next/link";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
+import { socials } from "@/lib/data";
 
-import React from 'react'
-import { GithubIcon, LinkedinIcon, InstagramIcon, Mail } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+const iconMap = {
+  github: Github,
+  linkedin: Linkedin,
+  instagram: Instagram,
+  mail: Mail,
+};
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="relative w-full bg-linear-to-t from-black via-gray-900 to-black text-white py-12 px-6 overflow-hidden">
-      {/* Floating Background Effects */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 0.15, scale: 1.2 }}
-        transition={{ repeat: Infinity, duration: 12, ease: 'easeInOut', repeatType: 'mirror' }}
-        className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-80 h-80 bg-white/10 blur-3xl rounded-full"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 0.1, scale: 1.1 }}
-        transition={{ repeat: Infinity, duration: 14, ease: 'easeInOut', repeatType: 'mirror' }}
-        className="absolute -bottom-16 right-1/2 transform translate-x-1/2 w-80 h-80 bg-white/10 blur-3xl rounded-full"
-      />
+    <footer className="page-shell page-grid min-h-0 py-12">
+      <div className="section-band">
+        <div className="section-inner flex flex-col gap-8 border-t pt-8" style={{ borderColor: "var(--line)" }}>
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+            <div>
+              <p className="font-display text-2xl uppercase">Sarthak Singh</p>
+              <p className="mt-2 text-sm muted-copy">Full-stack developer based in India.</p>
+            </div>
+            <div className="flex gap-3">
+              {socials.map((social) => {
+                const Icon = iconMap[social.icon];
 
-      {/* Social Links */}
-      <div className="flex justify-center gap-6 mb-6">
-        <motion.a 
-          whileHover={{ scale: 1.2 }} 
-          whileTap={{ scale: 0.95 }} 
-          href='https://github.com/Sarthak01819' 
-          target="_blank" 
-          className="cursor-pointer"
-        >
-          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/github.png" alt="GitHub" />
-        </motion.a>
-
-        <motion.a 
-          whileHover={{ scale: 1.2 }} 
-          whileTap={{ scale: 0.95 }} 
-          href='https://www.linkedin.com/in/sarthak-singh-866455253' 
-          target="_blank" 
-          className="cursor-pointer"
-        >
-          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/linkedin.png" alt="LinkedIn" />
-        </motion.a>
-
-        <motion.a 
-          whileHover={{ scale: 1.2 }} 
-          whileTap={{ scale: 0.95 }} 
-          href='https://www.instagram.com/yo.sarthak_?igsh=MXJibGU5a2xkdzFhMg==' 
-          target="_blank" 
-          className="cursor-pointer"
-        >
-          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/instagram-logo.png" alt="Instagram" />
-        </motion.a>
-
-        <motion.a 
-          whileHover={{ scale: 1.2 }} 
-          whileTap={{ scale: 0.95 }} 
-          href="mailto:sarthaksingh.9344@gmail.com" 
-          className="cursor-pointer"
-        >
-          <img className='hover:scale-90 transition-all cursor-pointer h-7 relative z-10' src="/mail.png" alt="Instagram" />
-        </motion.a>
-      </div>
-
-      {/* Divider */}
-      <div className="h-px bg-white/20 w-full mb-6"></div>
-
-      {/* Copyright */}
-      <div className="text-center flex flex-col text-gray-400 text-sm">
-        <span>&copy; {new Date().getFullYear()}. All rights reserved.</span>
-        <span>
-          Created and Designed by <Link href={'/'} className='underline cursor-pointer'>Sarthak Singh</Link>.
-        </span>
+                return (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    target={social.href.startsWith("http") ? "_blank" : undefined}
+                      rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    aria-label={social.label}
+                    className="grid h-11 w-11 place-items-center rounded-full border transition-transform hover:-translate-y-1"
+                    style={{ borderColor: "var(--line)", background: "var(--surface)" }}
+                  >
+                    <Icon size={19} aria-hidden="true" />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex flex-col justify-between gap-3 text-sm muted-copy sm:flex-row">
+            <span>&copy; {new Date().getFullYear()}. All rights reserved.</span>
+            <span>
+              Created and designed by{" "}
+              <Link href="/" className="underline underline-offset-4">
+                Sarthak Singh
+              </Link>
+              .
+            </span>
+          </div>
+        </div>
       </div>
     </footer>
-  )
+  );
 }
-
-export default Footer
