@@ -41,6 +41,10 @@ html[data-theme="dark"] {
   --scene-atmosphere: #69f7ff;
   --scene-ring: #b8fbff;
   --scene-points: #f8fafc;
+  --eye-opacity: 0.7;
+  --rim-core: #e9fffb;
+  --rim-glow: #2dd4bf;
+  --rim-haze: #f0abfc;
 }
 
 html[data-theme="light"] {
@@ -66,6 +70,10 @@ html[data-theme="light"] {
   --scene-atmosphere: #0ea5e9;
   --scene-ring: #0369a1;
   --scene-points: #064e3b;
+  --eye-opacity: 0.82;
+  --rim-core: #0f766e;
+  --rim-glow: #14b8a6;
+  --rim-haze: #db2777;
 }
 
 * {
@@ -73,8 +81,10 @@ html[data-theme="light"] {
 }
 
 html {
+  /* Non-static so framer-motion's useScroll can measure element offsets correctly. */
+  position: relative;
   background: var(--bg);
-  scroll-behavior: smooth;
+  /* Smooth scrolling is handled by Lenis (components/SmoothScroll.js). */
 }
 
 body {
@@ -121,22 +131,55 @@ a {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  background:
-    linear-gradient(125deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 32%),
-    linear-gradient(235deg, color-mix(in srgb, var(--warm) 8%, transparent), transparent 36%),
-    linear-gradient(180deg, var(--bg), var(--bg-2) 48%, var(--bg));
 }
 
-.page-grid::before {
-  content: "";
+/* Site-wide eye background (components/EyeBackground.js) */
+.eye-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  /* Sit slightly above true center so the eyes rest inside the hero planet, above the name. */
+  padding-bottom: 16svh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.eye-stage {
+  position: relative;
+  width: min(70vw, 70rem);
+  aspect-ratio: 1280 / 480;
+  opacity: var(--eye-opacity);
+  transition: opacity 0.7s ease;
+  will-change: transform;
+}
+
+.eye-layer[data-dim="true"] .eye-stage {
+  opacity: calc(var(--eye-opacity) * 0.38);
+}
+
+.eye-stage img {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 78%);
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+html[data-theme="light"] .eye-stage {
+  /* Frames are white line art on transparency; invert to black eyes on the light page. */
+  filter: invert(1);
+}
+
+@media (max-width: 640px) {
+  .eye-stage {
+    width: 86vw;
+  }
+
+  .eye-layer {
+    padding-bottom: 30svh;
+  }
 }
 
 .nav-shell {
@@ -169,50 +212,133 @@ a {
   color: var(--muted);
 }
 
-.hero-title {
-  font-family: font2, var(--font-geist-sans), Arial, sans-serif;
-  max-width: 100%;
-  font-size: clamp(3.15rem, 13vw, 10.8rem);
-  line-height: 0.82;
-  text-transform: uppercase;
-  letter-spacing: 0;
+/* ---------- Home hero: glowing-rim planet + spread name ---------- */
+
+/* Set by the inline script in layout.js before paint, removed by Hero once GSAP has
+   applied the intro's start states (or after 4s as a fail-safe). Prevents a flash of the
+   finished hero before the intro begins. */
+html.intro-pending .rim-planet,
+html.intro-pending .hero-letter,
+html.intro-pending .hero-kicker,
+html.intro-pending .hero-copy > *,
+html.intro-pending .rim-sweep {
+  opacity: 0;
 }
 
-.hero-title-mask {
-  display: block;
+.hero-planet-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rim-planet {
+  --reveal: 135%;
+  position: absolute;
+  left: 50%;
+  bottom: 34%;
+  width: min(116vw, 170svh);
+  aspect-ratio: 1;
+  translate: -50% 0;
+  border-radius: 50%;
+  transform-origin: 50% 100%;
+  /* Reveals the rim from the bottom up during the intro (GSAP tweens --reveal). */
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 var(--reveal), transparent calc(var(--reveal) + 22%));
+  mask-image: linear-gradient(to top, #000 0%, #000 var(--reveal), transparent calc(var(--reveal) + 22%));
+}
+
+.rim-glow,
+.rim-haze,
+.rim-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.rim-glow {
+  border: 2px solid var(--rim-core);
+  box-shadow:
+    0 0 10px 1px var(--rim-glow),
+    0 0 42px 6px color-mix(in srgb, var(--rim-glow) 60%, transparent),
+    0 0 120px 24px color-mix(in srgb, var(--rim-glow) 26%, transparent),
+    inset 0 0 24px 3px color-mix(in srgb, var(--rim-glow) 75%, transparent),
+    inset 0 0 110px 14px color-mix(in srgb, var(--rim-haze) 28%, transparent);
+}
+
+.rim-haze {
   overflow: hidden;
-  padding-bottom: 0.09em;
+  /* Light pooled along the inside of the lower rim; the middle stays clear so the eyes show through. */
+  background:
+    radial-gradient(ellipse 58% 30% at 50% 100%, color-mix(in srgb, var(--rim-glow) 34%, transparent), transparent 72%),
+    radial-gradient(ellipse 34% 18% at 72% 92%, color-mix(in srgb, var(--rim-haze) 30%, transparent), transparent 70%);
 }
 
-.hero-title-line {
-  display: block;
-  background: var(--hero-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+.rim-sweep {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* Fade the far (upper) half of the ellipse so the light reads as travelling around the planet. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 80%, #000 90%);
+  mask-image: linear-gradient(to bottom, transparent 80%, #000 90%);
+}
+
+.rim-sweep path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.rim-sweep-tail {
+  stroke: var(--rim-haze);
+  stroke-width: 10;
+  opacity: 0.22;
+  filter: blur(6px);
+}
+
+.rim-sweep-glow {
+  stroke: var(--rim-glow);
+  stroke-width: 14;
+  opacity: 0.55;
+  filter: blur(8px);
+}
+
+.rim-sweep-core {
+  stroke: var(--rim-core);
+  stroke-width: 4;
+}
+
+.hero-name {
+  display: flex;
+  width: 100%;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  font-family: font2, var(--font-geist-sans), Arial, sans-serif;
+  font-size: clamp(2rem, 6vw, 7rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hero-name-word {
+  display: flex;
+  flex-basis: 0;
+  justify-content: space-between;
+}
+
+.hero-letter {
+  display: inline-block;
+  color: var(--text);
+  text-shadow: 0 0 28px color-mix(in srgb, var(--rim-glow) 45%, transparent);
+  will-change: transform, filter, opacity;
 }
 
 @media (max-width: 640px) {
-  .hero-title {
-    font-size: clamp(2.25rem, 9.4vw, 3.75rem);
-    line-height: 0.95;
+  .hero-name {
+    flex-direction: column;
+    gap: 0.25em;
+    font-size: 12vw;
   }
 
-  .hero-title-mask {
-    overflow: visible;
-    padding-bottom: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  html[data-theme="light"] .hero-copy .eyebrow {
-    color: #67e8f9;
-    text-shadow: 0 2px 18px rgba(7, 22, 48, 0.55);
-  }
-
-  html[data-theme="light"] .hero-copy .muted-copy {
-    color: rgba(255, 255, 255, 0.86);
-    text-shadow: 0 2px 18px rgba(7, 22, 48, 0.55);
+  .rim-planet {
+    bottom: 40%;
+    width: 150vw;
   }
 }
 
@@ -314,6 +440,100 @@ a {
 .field-control:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* Ink page transition (components/PageTransition.js) */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.page-transition[data-active="true"] {
+  /* Visible and blocking clicks only while the ink is on screen. */
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.page-transition svg {
+  display: block;
+}
+
+.ink-fill {
+  /* Light ink on the dark theme, dark ink on the light theme, like the smoke in the reference. */
+  fill: var(--text);
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 2px;
+  background: var(--hero-gradient);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+/* Experience timeline */
+.timeline {
+  --rail: 0.95rem;
+  position: relative;
+}
+
+.timeline-track,
+.timeline-fill {
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  left: var(--rail);
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline-fill {
+  width: 2px;
+  margin-left: -0.5px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  transform-origin: 50% 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: calc(var(--rail) * 2 + 1.25rem);
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 0.35rem;
+  left: calc(var(--rail) - 0.5rem);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.timeline-dot[data-current="true"]::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid var(--accent-strong);
+  animation: timeline-pulse 2.2s ease-out infinite;
+}
+
+@keyframes timeline-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,3 +1,4 @@
+import MaskText from "@/components/MaskText";
 import Reveal from "@/components/Reveal";
 
 export default function SectionHeader({ eyebrow, title, meta, children, align = "center" }) {
@@ -13,7 +14,9 @@ export default function SectionHeader({ eyebrow, title, meta, children, align = 
         {eyebrow && <span className="eyebrow">{eyebrow}</span>}
         {meta && <span className="font-display text-sm uppercase muted-copy">{meta}</span>}
       </div>
-      <h1 className="font-display text-[clamp(3.4rem,10vw,8.5rem)] uppercase leading-[0.9]">{title}</h1>
+      <h1 className="font-display text-[clamp(3.4rem,10vw,8.5rem)] uppercase leading-[0.9]">
+        <MaskText>{title}</MaskText>
+      </h1>
       {children && <div className="max-w-3xl text-base leading-7 muted-copy sm:text-lg">{children}</div>}
     </Reveal>
   );

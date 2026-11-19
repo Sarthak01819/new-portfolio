@@ -29,7 +29,7 @@ export default function Navbar() {
           <span className="hidden font-display text-sm uppercase sm:block">Sarthak Singh</span>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-0.5 md:flex lg:gap-1">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
 
@@ -37,7 +37,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-xs font-semibold uppercase transition-colors"
+                className="whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-semibold uppercase transition-colors lg:px-4"
                 style={{
                   background: isActive ? "var(--text)" : "transparent",
                   color: isActive ? "var(--bg)" : "var(--muted)",

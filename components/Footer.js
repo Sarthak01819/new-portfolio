@@ -11,7 +11,7 @@ const iconMap = {
 
 export default function Footer() {
   return (
-    <footer className="page-shell page-grid min-h-0 py-12">
+    <footer className="relative overflow-hidden py-12">
       <div className="section-band">
         <div className="section-inner flex flex-col gap-8 border-t pt-8" style={{ borderColor: "var(--line)" }}>
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">

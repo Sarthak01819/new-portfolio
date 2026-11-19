@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import MaskText from "@/components/MaskText";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
 import { projects } from "@/lib/data";
@@ -13,7 +14,9 @@ export default function SelectedWork() {
         <Reveal className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <p className="eyebrow">Selected work</p>
-            <h2 className="mt-3 font-display text-[clamp(2.6rem,7vw,6rem)] uppercase leading-none">Recent builds</h2>
+            <h2 className="mt-3 font-display text-[clamp(2.6rem,7vw,6rem)] uppercase leading-none">
+              <MaskText>Recent builds</MaskText>
+            </h2>
           </div>
           <Link href="/projects" className="secondary-action w-fit">
             All projects <ArrowRight size={18} aria-hidden="true" />

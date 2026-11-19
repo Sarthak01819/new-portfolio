@@ -2,6 +2,7 @@ import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
+import { Stagger, StaggerItem } from "@/components/Stagger";
 
 const contactItems = [
   { icon: Mail, label: "Email", value: "sarthaksingh.9344@gmail.com", href: "mailto:sarthaksingh.9344@gmail.com" },
@@ -18,7 +19,7 @@ export default function ContactPage() {
         </SectionHeader>
 
         <div className="section-inner grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <Reveal className="grid gap-4">
+          <Stagger className="grid gap-4" stagger={0.1}>
             {contactItems.map((item) => {
               const Icon = item.icon;
               const content = (
@@ -37,16 +38,16 @@ export default function ContactPage() {
               );
 
               return item.href ? (
-                <a key={item.label} href={item.href}>
+                <StaggerItem as="a" key={item.label} href={item.href}>
                   {content}
-                </a>
+                </StaggerItem>
               ) : (
-                <div key={item.label}>{content}</div>
+                <StaggerItem key={item.label}>{content}</StaggerItem>
               );
             })}
-          </Reveal>
+          </Stagger>
 
-          <Reveal delay={0.08}>
+          <Reveal delay={0.12} from="right">
             <form action="https://formspree.io/f/mjkaqnyb" method="POST" className="contact-card grid gap-4 p-5 sm:p-8" aria-labelledby="contact-heading">
               <h2 id="contact-heading" className="sr-only">Contact form</h2>
               <input type="text" name="_gotcha" tabIndex="-1" autoComplete="off" style={{ display: "none" }} />

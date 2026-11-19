@@ -1,6 +1,8 @@
 import FeatureCard from "@/components/FeatureCard";
 import PageShell from "@/components/PageShell";
+import MaskText from "@/components/MaskText";
 import Reveal from "@/components/Reveal";
+import { Stagger, StaggerItem } from "@/components/Stagger";
 import SectionHeader from "@/components/SectionHeader";
 import { services, techStack } from "@/lib/data";
 
@@ -23,19 +25,22 @@ export default function ServicesPage() {
         <div className="section-inner grid gap-8 lg:grid-cols-[0.75fr_1fr] lg:items-start">
           <Reveal>
             <p className="eyebrow">Tech stack</p>
-            <h2 className="mt-3 font-display text-5xl uppercase leading-none sm:text-6xl">Tools I use</h2>
+            <h2 className="mt-3 font-display text-5xl uppercase leading-none sm:text-6xl">
+              <MaskText>Tools I use</MaskText>
+            </h2>
           </Reveal>
-          <Reveal className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5" delay={0.08}>
+          <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5" delay={0.1}>
             {techStack.map((tech) => (
-              <span
+              <StaggerItem
+                as="span"
                 key={tech}
                 className="rounded-[8px] border px-4 py-4 text-center text-sm font-semibold"
                 style={{ borderColor: "var(--line)", background: "var(--surface)" }}
               >
                 {tech}
-              </span>
+              </StaggerItem>
             ))}
-          </Reveal>
+          </Stagger>
         </div>
       </section>
     </PageShell>
