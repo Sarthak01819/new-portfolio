@@ -162,7 +162,7 @@ export default function Hero() {
             <motion.div className="hero-copy mx-auto mt-12 flex max-w-xl flex-col items-center text-center sm:mt-16" style={{ y: copyY, opacity: fadeOut }}>
               <p className="eyebrow">Full-stack developer</p>
               <p className="mt-4 text-base leading-7 muted-copy sm:text-lg sm:leading-8">
-                I build fast, expressive web products with Next.js, React, Node.js, and thoughtful motion that makes the experience feel alive.
+                I build fast, expressive web products with Next.js, React, Node.js, and AI integrations, with thoughtful motion that makes the experience feel alive.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Link href="/projects" className="primary-action">

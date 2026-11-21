@@ -18,7 +18,7 @@ export default function ExperiencePage() {
     <PageShell className="pb-24 sm:pb-32">
       <section className="section-band">
         <SectionHeader eyebrow="Experience" title="The journey">
-          Client work, the degree behind it, and the certifications along the way: where I have been building and learning.
+          A front-end internship, freelance client work, the degree behind it, and the certifications along the way: where I have been building and learning.
         </SectionHeader>
 
         <div className="section-inner">

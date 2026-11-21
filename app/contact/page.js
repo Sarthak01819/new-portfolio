@@ -5,7 +5,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { Stagger, StaggerItem } from "@/components/Stagger";
 
 const contactItems = [
-  { icon: Mail, label: "Email", value: "sarthaksingh.9344@gmail.com", href: "mailto:sarthaksingh.9344@gmail.com" },
+  { icon: Mail, label: "Email", value: "sarthak.singh.2500@gmail.com", href: "mailto:sarthak.singh.2500@gmail.com" },
   { icon: Phone, label: "Phone", value: "+91-8429172126", href: "tel:+918429172126" },
   { icon: MapPin, label: "Location", value: "Kanpur, Uttar Pradesh, India" },
 ];

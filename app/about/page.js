@@ -32,7 +32,7 @@ export default function AboutPage() {
           <Reveal className="contact-card p-6 sm:p-8" delay={0.08} from="right">
             <div className="grid gap-6 text-base leading-8 sm:text-lg">
               <ScrollText text="I like building with a clear product spine: the interface should be easy to scan, the code should be easy to extend, and the final experience should feel smooth without hiding the actual utility." />
-              <ScrollText text="My current toolkit centers on React, Next.js, Node.js, Express, MongoDB, Tailwind CSS, GSAP, and Three.js, with an eye for shipping responsive work that is ready for real users." />
+              <ScrollText text="My current toolkit centers on React, Next.js, Node.js, Express, Python, MongoDB, Tailwind CSS, GSAP, and Framer Motion, plus LLM integration, with an eye for shipping responsive work that is ready for real users." />
             </div>
           </Reveal>
         </div>
