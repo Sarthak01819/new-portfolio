@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download, MapPin } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -171,6 +171,9 @@ export default function Hero() {
                 <Link href="/contact" className="secondary-action">
                   Hire me <ArrowUpRight size={18} aria-hidden="true" />
                 </Link>
+                <a href="/Sarthak_Singh_Resume.pdf" download="Sarthak_Singh_Resume.pdf" className="secondary-action">
+                  Resume <Download size={18} aria-hidden="true" />
+                </a>
               </div>
             </motion.div>
           </div>
